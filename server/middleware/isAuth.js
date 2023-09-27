@@ -6,6 +6,7 @@ module.exports = {
     // key/value object function
     isAuthenticated: (req, res, next) => {
         // checking if auth had the jw token
+        // .get is a method from req, res this fetched authorization from the header< a object that holds info about the req
         const headerToken = req.get('Authorization')
         // if theres's no headertoken than console.log error and send status code
         if (!headerToken) {
@@ -24,7 +25,7 @@ module.exports = {
             // it will stop any process below. Like return.
             throw err
         }
-        // if token on line 16 is reassigned
+        // if token on line 16 is false
         if (!token) {
             const error = new Error('Not authenticated.')
             error.statusCode = 401

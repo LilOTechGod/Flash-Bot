@@ -5,12 +5,13 @@ const {User} = require('../models/user');
 const bcrypt = require("bcryptjs");
 
 
-const createToken = (info) => {
+const createToken = (email,id) => {
     return jwt.sign(
         {
             // we'll be using these 2 key value pairs in our encoding process. Information we want to use for encoding
-            userLastName: info.user_lastName,
-            email: info.user_email
+         user_email: email,
+         userId: id
+
         },
         SECRET,
         {
@@ -25,26 +26,26 @@ const createToken = (info) => {
 module.exports = {
     login: async (req, res) => {        
         try{
-            let {username, password} = req.body;
+            let {user_email, password} = req.body;
 
-            // find one is sequelize method and the object adds a WHERE clause to our query and looks for usernames matching the one coming from req.body.
-            let foundUser = await User.findOne({WHERE: {username: username}})
+            // find one is sequelize method and the object adds a WHERE clause to our query and looks for user_emails matching the one coming from req.body.
+            let foundUser = await User.findOne({WHERE: {user_email: user_email}})
 
             if(foundUser) {
-                // First, we’ll check to see if the username and password match what’s stored in the database. 
-                const isAuthenticated = bcrypt.compareSync(password, foundUser.hashedPass);
+                // First, we’ll check to see if the user_email and password match what’s stored in the database. 
+                const isAuthenticated = bcrypt.compareSync(password, foundUser.user_hashPass);
                 // will check if isAuthenticated is truthy.
                 if(isAuthenticated) {
-                    // this makes a new token for our new user passing in the username and id
-                    let token = createToken(foundUser.dataValues.username, foundUser.dataValues.id);
+                    // this makes a new token for our new user passing in the user_email and id
+                    let token = createToken(foundUser.user_email, foundUser.userId);
 
                     // make our own expiration time since the JWT sign method only returns the actual token.
                     const exp = Date.now() + 1000 * 60 * 60 * 48;
 
                     // I created an object that holds all of the new user data so that I may send this to the front end
                     const userData = {
-                    username: foundUser.dataValues.username,
-                    userId: foundUser.dataValues.id,
+                    user_email: foundUser.user_email,
+                    userId: foundUser.userId,
                     token: token,
                     exp: exp
                     };
@@ -65,29 +66,31 @@ module.exports = {
     },
     register: async (req, res) => {
         try{
-            let {username, password} = req.body;
-            // find one is sequelize method and the object adds a WHERE clause to our query and looks for usernames matching the one coming from req.body.
-            let foundUser = await User.findOne({WHERE: {username: username}})
+            let {user_email, password, user_firstName, user_lastName} = req.body;
+            // find one is sequelize method and the object adds a WHERE clause to our query and looks for user_emails matching the one coming from req.body.
+            let foundUser = await User.findOne({WHERE: {user_email: user_email}})
             // if foundUser is true, that means we already have a user with that name in the database.
             if(foundUser) {
-                res.status(400).send('Username is taken please, create a unique username!')
+                res.status(400).send('Email is taken please, create a unique user_email!')
             }else {
                 const salt = bcrypt.genSaltSync(10);
                 const hash = bcrypt.hashSync(password, salt);
 
-                // will create a new user, going into the user model and creates a new user setting the username and hashedpass columns to the input from the front end; saves the hashed pass.
-                const newUser = await User.create({username: username, hashedPass: hash});
+                // will create a new user, going into the user model and creates a new user setting the user_email and hashedpass columns to the input from the front end; saves the hashed pass.
+                const newUser = await User.create({user_email: user_email, hashPass: hash, user_firstName: user_firstName, user_lastName: user_lastName});
 
-                // this makes a new token for our new user passing in the username and id
-                let token = createToken(newUser.dataValues.username, newUser.dataValues.id)
+                // this makes a new token for our new user passing in the user_email and id
+                let token = createToken(newUser.dataValues.user_email, newUser.dataValues.userId)
 
                 // make our own expiration time since the JWT sign method only returns the actual token.
                 const exp = Date.now() + 1000 * 60 * 60 * 48
 
                 // I created an object that holds all of the new user data so that I may send this to the front end
                 const newUserData = {
-                    username: newUser.dataValues.username,
-                    userId: newUser.dataValues.id,
+                    user_email: newUser.dataValues.user_email,
+                    userId: newUser.dataValues.userId,
+                    user_firstName: newUser.dataValues.user_firstName,
+                    user_lastName: newUser.dataValues.user_lastName,
                     token: token,
                     exp: exp
                     }

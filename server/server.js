@@ -11,8 +11,6 @@ const PORT = process.env.PORT || 4004
 app.use(express.json());
 app.use(cors());
 
-//? Relationship between tables here
-
 //? CB Functions
 const {login, register} = require('./controllers/auth');
 const { isAuthenticated } = require('./middleware/isAuth');
@@ -27,8 +25,8 @@ app.post('/processpayment', isAuthenticated, processpayment);
 // the force: true is for development -- it DROPS tables!!!
 // you can use it if you like while you are building.
 // sequelize.sync({ force: true })
-// use the .sync method to connect to our database
-sequelize.sync()
+// use the .sync method to connect to our database, create the models for me
+sequelize.sync({force: true})
 .then(() => {
         app.listen(PORT, () => console.log(`db sync successful and server running on port ${PORT}`));
     })
