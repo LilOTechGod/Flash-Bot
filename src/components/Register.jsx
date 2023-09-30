@@ -10,20 +10,19 @@ import AuthContext from "../store/authContext";
 export const Register = () => {
 
     // state for every input
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('oscar');
+    const [lastName, setLastName] = useState('perez');
+    const [email, setEmail] = useState('perez@gmail.com');
+    const [password, setPassword] = useState('password');
     // bring in dispatch
-    const [register, setRegister] = useState(true);
     const { dispatch } = useContext(AuthContext);
 
     const submitHandler = (e) => {
         e.preventDefault();
 
         let body = {firstName, lastName, email, password}
-
-        axios.post(register ? '/register' : '/login', body)
+        console.log(body);
+        axios.post('http://localhost:4004/register', body)
             .then(res => {
                 dispatch({type: 'LOGIN', payload: res.data });
             })
@@ -33,7 +32,7 @@ export const Register = () => {
     };
 
   return (
-    <form onSubmit={submitHandler}>
+    <Form onSubmit={ (evt) => submitHandler(evt) }>
         {/* Register form begins */}
         <InputGroup className="mb-3">
           <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
@@ -68,10 +67,10 @@ export const Register = () => {
           <InputGroup.Text></InputGroup.Text>
         </InputGroup>
 
-        <Button variant="primary" onClick={() => setRegister(!register)}>
-            Need to {register ? 'Login' : 'Sign Up'}
+        <Button variant="primary" type='submit'>
+            Submit
         </Button>
         {/* Register form ends */}
-    </form>
+    </Form>
   )
 }

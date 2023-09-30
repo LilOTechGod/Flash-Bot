@@ -11,7 +11,18 @@ function CarouselCom() {
     };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect} fade>
+    <>
+      <style type="text/css">
+        {`
+          img {
+            width: 100dvw;
+            height: 25rem;
+            margin-bottom: 5rem;
+          }
+        `}
+      </style>
+
+    <Carousel activeIndex={index} onSelect={handleSelect} >
       <Carousel.Item>
         <img src="https://th.bing.com/th/id/OIP.7U04VgXgEOjam3-A_RMutgHaJ4?w=134&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" text="First slide" />
       </Carousel.Item>
@@ -22,6 +33,7 @@ function CarouselCom() {
         <img src="https://th.bing.com/th/id/OIP.Cecvmy0Ea70v_m4S4_mXlQHaFW?w=232&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" text="Third slide" />
       </Carousel.Item>
     </Carousel>
+    </>
   );
 }
 

@@ -5,6 +5,7 @@ const {User} = require('../models/user');
 const bcrypt = require("bcryptjs");
 
 
+
 const createToken = (email,id) => {
     return jwt.sign(
         {
@@ -66,7 +67,8 @@ module.exports = {
     },
     register: async (req, res) => {
         try{
-            let {user_email, password, user_firstName, user_lastName} = req.body;
+            // let {user_email, password, user_firstName, user_lastName} = req.body;
+            console.log(req.body)
             // find one is sequelize method and the object adds a WHERE clause to our query and looks for user_emails matching the one coming from req.body.
             let foundUser = await User.findOne({WHERE: {user_email: user_email}})
             // if foundUser is true, that means we already have a user with that name in the database.

@@ -9,9 +9,9 @@ module.exports = {
             allowNull: false,
             primaryKey:true
         },
-        user_firstName: DataTypes.VARCHAR(30),
-        user_lastName: DataTypes.VARCHAR(30),
-        user_hashPass: DataTypes.VARCHAR(40),
-        user_email: DataTypes.VARCHAR(60)
+        user_firstName: DataTypes.CHAR(30),
+        user_lastName: DataTypes.CHAR(30),
+        user_hashPass: DataTypes.CHAR(40),
+        user_email: DataTypes.CHAR(60)
     })
 }

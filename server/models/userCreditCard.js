@@ -10,10 +10,9 @@ module.exports = {
             primaryKey:true
         },
         cc_number: DataTypes.INTEGER,
-        cc_expiration: DataTypes.VARCHAR(5),
+        cc_expiration: DataTypes.CHAR(5),
         cc_securityCode: DataTypes.INTEGER,
-        cc_billingAddress: DataTypes.VARCHAR(60),
-        cc_shippingAddress: DataTypes.VARCHAR(60),
+        cc_billingAddress: DataTypes.CHAR(60),
         cc_zipcode: DataTypes.INTEGER
     })
 }

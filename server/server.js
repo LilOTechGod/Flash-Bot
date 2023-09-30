@@ -1,12 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const {sequelize} = require('./utils/database');
-const {User} = require('./models/user')
-const {Post} = require('./models/post')
 
 const app = express();
 
-const PORT = process.env.PORT || 4004
+const PORT = 4004
 
 app.use(express.json());
 app.use(cors());
