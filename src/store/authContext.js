@@ -54,7 +54,7 @@ const AuthContextProvider = (props) => {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  // a fun that we call depending on the rendering of something
+  // a function that we call depending on the rendering of something
   useEffect(() => {
     let localData = getLocalData();
     if (localData) {

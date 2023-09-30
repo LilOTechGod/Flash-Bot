@@ -11,6 +11,9 @@ function FlipCard() {
           .card {
             margin: 20px;
           }
+          .info {
+            margin-bottom: 5rem;
+          }
         `}
     </style>
 

@@ -7,32 +7,39 @@ import axios from "axios";
 import AuthContext from "../store/authContext";
 
 export const Login = () => {
-
-  const [email, setEmail] = useState('');
+  // add state for every input
+  const [user_email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [logIn, setLogIn] = useState(true);
+  // bring in dispatch, here were destructuring dispatch from Authcontext, we have access to authcontext thanks to usecontext
   const { dispatch } = useContext(AuthContext);
   
+  // my on submit handler function when a user hits submit on the login form
   const submitHandler = (e) => {
     e.preventDefault();
 
-    let body = {email, password}
-
-    axios.post(logIn ? '/login' : '/register', body)
+    let body = {user_email, password}
+    console.log(body);
+    axios
+      .post("http://localhost:4004/login", body)
       .then(res => {
         dispatch({type: 'LOGIN', payload: res.data });
       })
-      .catch(err => console.err(err));
-    console.log('submitHandler called');
+      .catch(err => console.error(err));
+    console.log('submit login Handler called');
   }
 
   return (
     <>
         {/* login form begins */}
-        <Form onSubmit={submitHandler}>
+        <Form onSubmit={evt => submitHandler(evt)}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control 
+            type="email" 
+            placeholder="Enter email" 
+            value={user_email}
+            onChange={e => setEmail(e.target.value)}
+            />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
@@ -40,12 +47,14 @@ export const Login = () => {
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control 
+            type="password" 
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)} 
+            />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-          <Button variant="primary" onClick={() => setLogIn(!logIn)}>
+          <Button variant="primary" type="submit">
             submit
           </Button>
         </Form>

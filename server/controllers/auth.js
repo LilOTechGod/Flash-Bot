@@ -16,7 +16,7 @@ const createToken = (email,id) => {
         },
         SECRET,
         {
-            expiresIn: '1 days'
+            expiresIn: '1 day'
         }
     );
 };
@@ -33,7 +33,7 @@ module.exports = {
             let foundUser = await User.findOne({WHERE: {user_email: user_email}})
 
             if(foundUser) {
-                // First, we’ll check to see if the user_email and password match what’s stored in the database. 
+                // First, we’ll check to see if the user_email is in our DB if so then match password that's stored in the database with the password they typed in input. 
                 const isAuthenticated = bcrypt.compareSync(password, foundUser.user_hashPass);
                 // will check if isAuthenticated is truthy.
                 if(isAuthenticated) {
@@ -67,8 +67,7 @@ module.exports = {
     },
     register: async (req, res) => {
         try{
-            // let {user_email, password, user_firstName, user_lastName} = req.body;
-            console.log(req.body)
+            let {user_email, password, user_firstName, user_lastName} = req.body;
             // find one is sequelize method and the object adds a WHERE clause to our query and looks for user_emails matching the one coming from req.body.
             let foundUser = await User.findOne({WHERE: {user_email: user_email}})
             // if foundUser is true, that means we already have a user with that name in the database.
