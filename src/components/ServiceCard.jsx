@@ -1,18 +1,39 @@
-import Button from 'react-bootstrap/Button';
+import {Button, Form, Row, Col} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import { useState } from 'react';
+import { CartContext } from '../store/cartContext';
+import { useContext } from 'react';
 
-function ServiceCard({img,title, description}) {
+function ServiceCard(props) {
+  const product = props.product;
+  const cart = useContext(CartContext);
+  const productQuantity = cart.getProductQuantity(product.id);
+  // console.log(cart.items);
 
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={img} />
+      <Card.Img variant="top" src={product.img} />
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title>{product.title}</Card.Title>
         <Card.Text>
-         {description}
+         {product.description}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Card.Text>
+          {product.price}
+        </Card.Text>
+        {productQuantity > 0 ?
+          <>
+            <Form as={Row}>
+              <Form.Label column="true" sm="6">In Cart: {productQuantity}</Form.Label>
+              <Col sm='6'>
+                <Button sm='6' onClick={() => cart.addOneToCart(product.id)} className='mx-2'>+</Button>
+                <Button sm='6' onClick={() => cart.removeOneFromCart(product.id)} className='mx-2'>-</Button>
+              </Col>
+            </Form>
+            <Button variant='danger' onClick={() => cart.deleteFromCart(product.id)} className='my-2'>Remove from Cart</Button>
+          </> 
+        : 
+            <Button variant="primary" onClick={() => cart.addOneToCart(product.id)}>Add to cart</Button>
+        }
       </Card.Body>
     </Card>
   );

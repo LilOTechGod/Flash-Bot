@@ -11,7 +11,7 @@ module.exports = {
         },
         user_firstName: DataTypes.CHAR(30),
         user_lastName: DataTypes.CHAR(30),
-        user_hashPass: DataTypes.CHAR(40),
+        user_hashPass: DataTypes.CHAR(80),
         user_email: DataTypes.CHAR(60)
     })
 }

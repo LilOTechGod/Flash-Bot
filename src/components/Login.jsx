@@ -17,12 +17,12 @@ export const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    let body = {user_email, password}
+    let body = {user_email, password};
     console.log(body);
     axios
       .post("http://localhost:4004/login", body)
-      .then(res => {
-        dispatch({type: 'LOGIN', payload: res.data });
+      .then((res) => {
+        dispatch({type: "LOGIN", payload: res.data });
       })
       .catch(err => console.error(err));
     console.log('submit login Handler called');
@@ -31,7 +31,7 @@ export const Login = () => {
   return (
     <>
         {/* login form begins */}
-        <Form onSubmit={evt => submitHandler(evt)}>
+        <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control 

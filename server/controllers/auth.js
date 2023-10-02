@@ -34,6 +34,7 @@ module.exports = {
 
             if(foundUser) {
                 // First, we’ll check to see if the user_email is in our DB if so then match password that's stored in the database with the password they typed in input. 
+                console.log(foundUser);
                 const isAuthenticated = bcrypt.compareSync(password, foundUser.user_hashPass);
                 // will check if isAuthenticated is truthy.
                 if(isAuthenticated) {
@@ -78,7 +79,7 @@ module.exports = {
                 const hash = bcrypt.hashSync(password, salt);
 
                 // will create a new user, going into the user model and creates a new user setting the user_email and hashedpass columns to the input from the front end; saves the hashed pass.
-                const newUser = await User.create({user_email: user_email, hashPass: hash, user_firstName: user_firstName, user_lastName: user_lastName});
+                const newUser = await User.create({user_email: user_email, user_hashPass: hash, user_firstName: user_firstName, user_lastName: user_lastName});
 
                 // this makes a new token for our new user passing in the user_email and id
                 let token = createToken(newUser.dataValues.user_email, newUser.dataValues.userId)

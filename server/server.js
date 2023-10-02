@@ -24,7 +24,7 @@ app.post('/processpayment', isAuthenticated, processpayment);
 // you can use it if you like while you are building.
 // sequelize.sync({ force: true })
 // use the .sync method to connect to our database, create the models for me
-sequelize.sync({force: true})
+sequelize.sync()
 .then(() => {
         app.listen(PORT, () => console.log(`db sync successful and server running on port ${PORT}`));
     })
