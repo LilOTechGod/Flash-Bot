@@ -15,8 +15,8 @@ export const AuthAboutUs = () => {
                     float: left;
                     width: 73%;
                     padding: 2rem;
-                    font-family: open-sans;
-                    font-size: 15px
+                    font-size: 18px;
+                    font-weight: bold;
                 }
                 .authImg {
                     margin-bottom: 3rem;
