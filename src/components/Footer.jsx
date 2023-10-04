@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import AuthContext from '../store/authContext'; 
+import { Link } from 'react-router-dom';
+import logo from '../assets/flashbotlogo.png'
 
 
 export const AuthFooter = () => {
@@ -19,21 +21,29 @@ export const AuthFooter = () => {
 
   return (
     <div>
-       <Navbar expand="lg" className="bg-body-tertiary">
+       <Navbar expand="lg" className="">
       <Container fluid>
-        <Navbar.Brand href="#">Logo here</Navbar.Brand>
+        <Navbar.Brand href="/">
+        <img
+              src={logo}
+              width="100"
+              height="70"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+        </Navbar.Brand>
             <Nav.Link onClick={submitHandler}>Logout</Nav.Link>
-            <Nav.Link href="#action2">FAQ</Nav.Link>
-            <Nav.Link href="#action3">Policy</Nav.Link>
-            <Nav.Link href="#action4">Terms</Nav.Link>
+            <Nav.Link as={Link} to="/ComingSoon">FAQ</Nav.Link>
+            <Nav.Link as={Link} to="/ComingSoon">Policy</Nav.Link>
+            <Nav.Link as={Link} to="/ComingSoon">Terms</Nav.Link>
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="Subscribe to newsletter"
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success">Subscribe</Button>
           </Form>
       </Container>
     </Navbar>
@@ -44,20 +54,28 @@ export const AuthFooter = () => {
 export const NonAuthFooter = () => {
   return (
     <>
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="">
       <Container fluid>
-        <Navbar.Brand href="#">Logo here</Navbar.Brand>
-            <Nav.Link href="#action2">FAQ</Nav.Link>
-            <Nav.Link href="#action3">Policy</Nav.Link>
-            <Nav.Link href="#action4">Terms</Nav.Link>
+        <Navbar.Brand href="/">
+        <img
+              src={logo}
+              width="100"
+              height="70"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+        </Navbar.Brand>
+            <Nav.Link as={Link} to="/ComingSoon">FAQ</Nav.Link>
+            <Nav.Link as={Link} to="/ComingSoon">Policy</Nav.Link>
+            <Nav.Link as={Link} to="/ComingSoon">Terms</Nav.Link>
           <Form className="d-flex">
-            <Form.Control
+          <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="Subscribe to newsletter"
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success">Subscribe</Button>
           </Form>
       </Container>
     </Navbar>

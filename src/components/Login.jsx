@@ -30,8 +30,24 @@ export const Login = () => {
 
   return (
     <>
+       <style type='text/css'>
+        {`
+          .logIn {
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            width: 48%;
+            float: left;
+            box-shadow: 1px 0px 10px 5px grey; 
+            padding: 1rem;
+            height: 21rem;
+          }
+        `}
+      </style>
         {/* login form begins */}
-        <Form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler} id="login" className="logIn">
+          <h2>Log In</h2>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control 
@@ -55,7 +71,7 @@ export const Login = () => {
             />
           </Form.Group>
           <Button variant="primary" type="submit">
-            submit
+            Log In
           </Button>
         </Form>
         {/* login form ends */}

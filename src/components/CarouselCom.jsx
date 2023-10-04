@@ -1,5 +1,8 @@
 import Carousel from 'react-bootstrap/Carousel';
 import { useState } from 'react';
+import imgOne from '../assets/jordan5.jpg'
+import imgTwo from '../assets/nikes.jpg'
+import imgThree from '../assets/nikexsupreme.jpg'
 
 
 function CarouselCom() {
@@ -14,23 +17,23 @@ function CarouselCom() {
     <>
       <style type="text/css">
         {`
-          img {
-            width: 100dvw;
-            height: 25rem;
-            margin-bottom: 5rem;
+          .carouselImg {
+            width: 100%;
+            height: 33rem;
+            margin-bottom:3rem;
           }
         `}
       </style>
 
-    <Carousel activeIndex={index} onSelect={handleSelect} >
+    <Carousel activeIndex={index} onSelect={handleSelect} className='carousel-fade' >
       <Carousel.Item>
-        <img src="https://th.bing.com/th/id/OIP.7U04VgXgEOjam3-A_RMutgHaJ4?w=134&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" text="First slide" />
+        <img className='carouselImg' src={imgOne} text="First slide" />
       </Carousel.Item>
       <Carousel.Item>
-        <img src="https://th.bing.com/th/id/OIP.w7qhZHVOXiUytJL7KBsZ5QHaEK?w=300&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" text="Second slide" />
+        <img className='carouselImg' src={imgThree} text="Second slide" />
       </Carousel.Item>
       <Carousel.Item>
-        <img src="https://th.bing.com/th/id/OIP.Cecvmy0Ea70v_m4S4_mXlQHaFW?w=232&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" text="Third slide" />
+        <img className='carouselImg' src={imgTwo} text="Third slide" />
       </Carousel.Item>
     </Carousel>
     </>

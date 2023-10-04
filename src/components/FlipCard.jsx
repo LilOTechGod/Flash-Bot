@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
-import secPic from '../assets/security-574079_640.jpg';
+import { ShieldCheckIcon, ThumbsupIcon, NumberIcon } from '@primer/octicons-react';
+
 
 function FlipCard() {
   return (
@@ -9,17 +10,20 @@ function FlipCard() {
     <style type="text/css">
         {`
           .card {
-            margin: 20px;
+            padding: 10px;
           }
           .info {
             margin-bottom: 5rem;
+          }
+          .icon {
+            margin: auto;
           }
         `}
     </style>
 
     <CardGroup className='info'>
       <Card>
-        <Card.Img variant="top" src="https://th.bing.com/th/id/OIP.JQhsOJu_MkiZ3PMl8ssxuAHaHa?w=160&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" />
+        <ThumbsupIcon size={150} className='icon' />
         <Card.Body>
           <Card.Title>Reliable</Card.Title>
           <Card.Text>
@@ -31,7 +35,7 @@ function FlipCard() {
         </Card.Footer>
       </Card>
       <Card>
-        <Card.Img variant="top" src='https://th.bing.com/th/id/OIP.75zOqrmn4x8Oz0BDTpwCkgHaHa?w=193&h=194&c=7&r=0&o=5&dpr=1.3&pid=1.7' />
+        <ShieldCheckIcon size={150} className='icon'/>
         <Card.Body>
           <Card.Title>Safe & Secure</Card.Title>
           <Card.Text>
@@ -43,7 +47,7 @@ function FlipCard() {
         </Card.Footer>
       </Card>
       <Card>
-        <Card.Img variant="top" src="https://th.bing.com/th/id/OIP.VUuylVxKNF-bhKfn5LL1AQHaHe?w=200&h=202&c=7&r=0&o=5&dpr=1.3&pid=1.7" />
+        <NumberIcon size={150} className='icon'/>
         <Card.Body>
           <Card.Title>Easy to Use</Card.Title>
           <Card.Text>

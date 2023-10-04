@@ -31,7 +31,23 @@ export const Register = () => {
   };
 
   return (
-    <Form onSubmit={(evt) => submitHandler(evt)}>
+    <Form  className='register' id="register" onSubmit={(evt) => submitHandler(evt)}>
+        <style type='text/css'>
+        {`
+          .register {
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            width: 48%;
+            float: right;
+            box-shadow: 1px 0px 10px 5px grey; 
+            padding: 1rem;
+            height: 21rem;
+          }
+        `}
+      </style>
+      <h2>Register</h2>
       {/* Register form begins */}
       <InputGroup className="mb-3">
         <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
@@ -78,7 +94,7 @@ export const Register = () => {
       </InputGroup>
 
       <Button variant="primary" type="submit">
-        Submit
+        Register
       </Button>
       {/* Register form ends */}
     </Form>

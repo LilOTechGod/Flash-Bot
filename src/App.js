@@ -16,6 +16,7 @@ import { AuthPage } from "./components/AuthPage";
 import AboutUsPage from "./components/AboutUsPage";
 import { ServicePage } from "./components/ServicePage";
 import CartProvider from "./store/cartContext";
+import { ComingSoon } from "./components/ComingSoon";
 function App() {
   //
   const { state } = useContext(AuthContext);
@@ -25,15 +26,13 @@ function App() {
       <Container className="">
         {!state.token ? <NonAuthNavbar /> : <AuthNavbar />}
         <Routes>
-          <Route
-            path="/"
-            element={state.token ? <LandingPage /> : <AuthPage />}
+          <Route path="/" element={state.token ? <LandingPage /> : <AuthPage />}
           />
-          <Route path="/aboutus" element={<AboutUsPage />} />
-          <Route path="/services" element={<ServicePage />} />
-          <Route path="/success" element={<Success />} />
-          <Route path="/cancel" element={<Cancel />} />
-          {/* <Route path='/cart' element={<Checkout />} /> */}
+          <Route path="/aboutus" element={state.token ? <AboutUsPage /> : <AuthPage />} />
+          <Route path="/services" element={state.token ? <ServicePage /> : <AuthPage />} />
+          <Route path="/success" element={state.token ? <Success /> : <AuthPage />} />
+          <Route path="/cancel" element={state.token ? <Cancel /> : <AuthPage />} />
+          <Route path='/comingsoon' element={state.token ? <ComingSoon /> : <AuthPage />} />
         </Routes>
         {!state.token ? <NonAuthFooter /> : <AuthFooter />}
       </Container>

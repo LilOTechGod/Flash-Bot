@@ -5,13 +5,28 @@ import Navbar from "react-bootstrap/Navbar";
 import {Button, Modal} from 'react-bootstrap';
 import { CartContext } from '../store/cartContext';
 import { CartProduct } from './CartProduct';
+import {Link } from 'react-router-dom';
+import logo from '../assets/flashbotlogo.png';
 
 export const NonAuthNavbar = () => {
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <style type='text/css'>
+        {`
+          
+        `}
+      </style>
+      <Navbar expand="lg" className="">
         <Container fluid>
-          <Navbar.Brand href="/">Flash Bot logo </Navbar.Brand>
+        <Navbar.Brand href="/">
+        <img
+              src={logo}
+              width="90"
+              height="60"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+        </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -19,8 +34,8 @@ export const NonAuthNavbar = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Log In</Nav.Link>
-              <Nav.Link href="#action2">Register Now</Nav.Link>
+              <Nav.Link href="#login">Log In</Nav.Link>
+              <Nav.Link href="#register">Register Now</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -43,9 +58,9 @@ export const AuthNavbar = () => {
 
   return(
     <>
-     <Navbar expand="lg" className="bg-body-tertiary">
+     <Navbar expand="lg" className="">
       <Container fluid>
-        <Navbar.Brand href="#">Welcome _userFirstName_</Navbar.Brand>
+        <Navbar.Brand href="/">Welcome To Flash Bot</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll" className='justify-content-end'>
           <Nav
@@ -53,12 +68,22 @@ export const AuthNavbar = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">About Us</Nav.Link>
-            <Nav.Link href=''> Services </Nav.Link>
+            <Nav.Link as={Link} to='/'>Home</Nav.Link>
+            <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
+            <Nav.Link as={Link} to='/services'>Services </Nav.Link>
             <Button onClick={handleShow}> Cart ({productsCount} items)</Button>
           </Nav>
         </Navbar.Collapse>
+        <Navbar.Brand href="/">
+        <img
+              src={logo}
+              width="90"
+              height="60"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+        </Navbar.Brand>
+
       </Container>
     </Navbar>
 

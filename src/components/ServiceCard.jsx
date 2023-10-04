@@ -7,10 +7,16 @@ function ServiceCard(props) {
   const product = props.product;
   const cart = useContext(CartContext);
   const productQuantity = cart.getProductQuantity(product.id);
-  // console.log(cart.items);
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '25%', margin:'20px auto', }} className='shadowCard'>
+    <style>
+      {`
+        .shadowCard {
+          box-shadow: 1px 0px 10px 5px grey;
+        }
+      `}
+    </style>
       <Card.Img variant="top" src={product.img} />
       <Card.Body>
         <Card.Title>{product.title}</Card.Title>
